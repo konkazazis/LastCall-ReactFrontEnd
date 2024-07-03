@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/JobReady2-nobg-crp.png";
+import logo from "../assets/lastcallnobg.png";
 import userImage from "../assets/user-image.png";
 
 function Header() {
@@ -37,9 +37,9 @@ function Header() {
       <header className="bg-white w-full h-12 flex justify-center items-center border-b-2 z-10">
         <nav className="w-[80%] h-full flex justify-between">
           <div className="flex items-center ">
-            <button>
-              <img src={logo} alt="" className="w-[170px]" />
-            </button>
+            {/* <button>
+              <img src={logo} alt="" className="w-[170px] h-[150px]" />
+            </button> */}
           </div>
           <div className="flex items-center">
             <ul className="flex">

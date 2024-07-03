@@ -4,6 +4,7 @@ import Login from "./login";
 import SignUp from "./signup";
 import Header from "./header.js";
 import CV from "../assets/cv.webp";
+import logo from "../assets/lastcallnobg.png";
 
 const LandingPage = () => {
   const [userId, setUserId] = useState(null);
@@ -26,8 +27,9 @@ const LandingPage = () => {
             {component.type === SignUp ? (
               <div className="w-[25rem]">
                 <div>
+                  <img src={logo} alt="" className="w-[200px] h-[200px]" />
                   <h1 className="text-3xl font-semibold mb-4">
-                    Create your resume in minutes. Sign up now!
+                    Manage your bar. Sign up now!
                   </h1>
                 </div>
                 <SignUp />
