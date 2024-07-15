@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import Header from "./header";
 
 function Account({
   fullname,
@@ -29,7 +28,6 @@ function Account({
 
   return (
     <div>
-      <Header />
       <div className="p-8">
         <h1 className="text-md mb-4">Personal Details</h1>
         <div className=" justify-between">

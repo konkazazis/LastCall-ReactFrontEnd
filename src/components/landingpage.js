@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Login from "./login";
 import SignUp from "./signup";
-import Header from "./header.js";
 import CV from "../assets/cv.webp";
 import logo from "../assets/lastcallnobg.png";
 
@@ -20,7 +19,6 @@ const LandingPage = () => {
 
   return (
     <div>
-      <Header />
       <div className="min-h-screen h-[600px] w-screen mx-0 flex items-center justify-center bg-gray-50">
         <div className="flex items-center justify-center w-[30%] h-full mx-6">
           <div className="">
