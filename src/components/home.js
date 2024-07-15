@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import userImg from "../assets/user-image.png";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Import the default styles
 import hyperlink from "../assets/hyperlink.png";
@@ -37,9 +39,11 @@ import Analysis from "./analysis";
 import Home2 from "./home2";
 
 function Home() {
+  const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const [component, setComponent] = useState(<Home2 userInfo={userInfo} />);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const [data, setData] = useState({ data: [] }); // Set the data state to an empty array
   const [errorCode, setErrorCode] = useState(null); // Set the errorInfo state to null
@@ -48,13 +52,18 @@ function Home() {
     setDate(newDate);
   };
 
-  // Logout function
-  function submitLogout(e) {
-    e.preventDefault();
-    axios.post("/logout", { withCredentials: true }).then(function (res) {
-      window.location.href = "/";
-    });
+  const handleStorageChange = () => {
+    const updatedToken = localStorage.getItem("token");
+    setToken(updatedToken);
+  };
+  window.addEventListener("storage", handleStorageChange);
+  if (!token || token === undefined || token === null) {
+    return <Navigate replace to="/" />;
   }
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   // Function to set the component to be rendered
   const changeComponent = (component) => {
@@ -92,11 +101,11 @@ function Home() {
     }
   };
 
-  useEffect(() => {
-    const CovidDataPerDay =
-      "https://api.thenewsapi.com/v1/news/all?language=en&api_token=UECGzUadiCBYT3YzjqyPJcehE4RRVy4buJA0PQGE";
-    fetchNewsData(CovidDataPerDay);
-  }, []);
+  // useEffect(() => {
+  //   const CovidDataPerDay =
+  //     "https://api.thenewsapi.com/v1/news/all?language=en&api_token=UECGzUadiCBYT3YzjqyPJcehE4RRVy4buJA0PQGE";
+  //   fetchNewsData(CovidDataPerDay);
+  // }, []);
 
   return (
     <div className="bg-white animate__animated animate__fadeIn m-2">
@@ -119,8 +128,8 @@ function Home() {
           <div className="animate__animated animate__fadeIn  h-[100%] shadow-xl rounded-md bg-slate-100 border-custom3 border-2">
             <div className=" flex m-4 justify-start items-center ">
               <img
-                src={"../mountain.jpg"}
-                alt="Logo"
+                src={userImg}
+                alt="user"
                 className="w-[50px] h-[50px] rounded-full"
               />
               <p className="ml-4 text-lg font-thin">{userInfo.username}</p>
@@ -210,7 +219,7 @@ function Home() {
                   Setings
                 </div>
                 <div
-                  onClick={(e) => submitLogout(e)}
+                  onClick={() => logout()}
                   className="w-[12rem] text-m font-normal mb-2 hover:cursor-pointer transition duration-300 ease-in-out transform hover:bg-slate-200 rounded-md p-2"
                 >
                   <button>
