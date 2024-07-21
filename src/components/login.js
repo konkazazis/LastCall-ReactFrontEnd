@@ -4,7 +4,7 @@ import { Link, Navigate, Route } from "react-router-dom";
 import AuthForm from "./google-auth";
 import ClipLoader from "./spinner";
 
-// axios.defaults.URL = process.env.REACT_APP_URL || "http://localhost:8000";
+axios.defaults.URL = process.env.REACT_APP_URL;
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,10 +28,7 @@ function Login() {
     setIsLoading(true);
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8000/login",
-        formData
-      );
+      const response = await axios.post("/login", formData);
       console.log(response);
       if (response.status === 200) {
         setErrorMessages("");

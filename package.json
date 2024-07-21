@@ -1,5 +1,5 @@
 {
-  "name": "resume-builder",
+  "name": "lastcall-barmanagement",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,7 +14,7 @@
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.6",
     "calendar": "^0.1.1",
-    "dotenv": "^16.4.4",
+    "dotenv": "^16.4.5",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
