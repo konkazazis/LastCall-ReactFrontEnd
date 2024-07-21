@@ -3,8 +3,6 @@ import { Link, Navigate, Route } from "react-router-dom";
 import axios from "axios";
 import ClipLoader from "./spinner";
 
-axios.defaults.URL = process.env.REACT_APP_URL;
-
 function Signup() {
   const [userId, setUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +25,10 @@ function Signup() {
     setIsLoading(true);
     e.preventDefault();
     try {
-      const response = await axios.post("/signup", formData);
+      const response = await axios.post(
+        `${process.env.REACT_APP_URL}/signup`,
+        formData
+      );
       const token = response.data.token;
       const userId = response.data.Id;
       setToken(token);
