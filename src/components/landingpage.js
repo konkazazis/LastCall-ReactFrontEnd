@@ -44,6 +44,7 @@ const LandingPage = () => {
             ) : (
               <div className="w-[25rem]">
                 <div>
+                  <img src={logo} alt="" className="w-[200px] h-[200px]" />
                   <h1 className="text-3xl font-semibold mb-4">
                     Welcome back! Sign in to your account.
                   </h1>
@@ -62,9 +63,12 @@ const LandingPage = () => {
             )}
           </div>
         </div>
-        <div className="flex items-center justify-center w-[70%] h-full bg-opacity-25 mb-2">
-          <div className="">
-            <img src={CV} />
+        <div className="flex bg-slate-400 items-center justify-center w-[70%] h-full bg-opacity-25 mb-2">
+          <div className=" w-[50%] text-xl leading-relaxed">
+            Welcome to <b>LastCall</b>, the ultimate tool for managing your bar
+            with ease and efficiency. Our intuitive app streamlines operations,
+            from inventory tracking to sales analysis, allowing you to focus on
+            what matters most – serving your customers and growing your business
           </div>
         </div>
       </div>
