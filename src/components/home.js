@@ -44,6 +44,9 @@ function Home() {
   const [userInfo, setUserInfo] = useState([]);
   const [component, setComponent] = useState(<Home2 userInfo={userInfo} />);
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [userFullname, setUserFullname] = useState(
+    localStorage.getItem("fullname")
+  );
 
   const [data, setData] = useState({ data: [] }); // Set the data state to an empty array
   const [errorCode, setErrorCode] = useState(null); // Set the errorInfo state to null
@@ -132,7 +135,7 @@ function Home() {
                 alt="user"
                 className="w-[50px] h-[50px] rounded-full"
               />
-              <p className="ml-4 text-lg font-thin">{userInfo.username}</p>
+              <p className="ml-4 text-lg font-thin">{userFullname}</p>
             </div>
             <div className="grid place-items-center">
               <hr className="mb-8 w-[12rem] h-[0.1rem] bg-slate-300" />

@@ -34,10 +34,12 @@ function Login() {
       if (response.status === 200) {
         setErrorMessages("");
         const token = response.data.token;
-        const userId = response.data.Id;
+        const userId = response.data.user_id;
+        const fullname = response.data.fullname;
         setToken(token);
         localStorage.setItem("User", userId);
         localStorage.setItem("token", token);
+        localStorage.setItem("fullname", fullname);
       }
     } catch (error) {
       console.log("Login failed:", error.message);
