@@ -18,10 +18,9 @@ const setAuthHeader = () => {
 // Function to send a GET request to fetch expenses
 export const getExpenses = () => {
   setAuthHeader();
-  const user_id = { user: localStorage.getItem("User") };
-  console.log(user_id);
+  const userId = localStorage.getItem("User");
   return axios
-    .get(`${API_URL}/expenses/`, user_id)
+    .get(`${API_URL}/expenses/?user_id=${userId}`)
     .then((response) => {
       return response.data;
     })
