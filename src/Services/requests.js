@@ -41,10 +41,9 @@ export const addExpense = (expenseData) => {
     });
 };
 
-// Function to send a DELETE request to delete an expense by ID
 export const deleteExpense = (expenseId) => {
   return axios
-    .delete(`${API_URL}api/expense-delete/${expenseId}`)
+    .delete(`${API_URL}/expenses/${expenseId}`)
     .then((response) => {
       return response.data;
     })

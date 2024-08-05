@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
-import {
-  getExpenses,
-  deleteExpense as apiDeleteExpense,
-  addExpense,
-} from "../Services/requests";
+import { getExpenses, deleteExpense, addExpense } from "../Services/requests";
 
 Modal.setAppElement("#root");
 
@@ -47,6 +43,17 @@ function Stock() {
       });
   };
 
+  const deleteExpenseItem = (id) => {
+    deleteExpense(id)
+      .then((data) => {
+        console.log("Expense deleted:", data);
+        fetchExpenses();
+      })
+      .catch((error) => {
+        console.error("Error deleting expenses:", error);
+      });
+  };
+
   // monitors changes in the form and updates the state
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +67,8 @@ function Stock() {
   const handleSubmit = (e) => {
     e.preventDefault();
     postExpense();
-    //setIsModalOpen(false);
+    setIsModalOpen(false);
+    fetchExpenses();
   };
 
   const handleClose = () => {
@@ -81,6 +89,7 @@ function Stock() {
           <table className="table-auto w-full">
             <thead>
               <tr>
+                <th className="px-4 py-2">Id</th>
                 <th className="px-4 py-2">Photos</th>
                 <th className="px-4 py-2">Description</th>
                 <th className="px-4 py-2">Amount</th>
@@ -91,13 +100,14 @@ function Stock() {
             <tbody>
               {expenses.map((expense) => (
                 <tr key={expense.id}>
+                  <td className="border px-4 py-2">{expense.id}</td>
                   <td className="border px-4 py-2">{expense.description}</td>
                   <td className="border px-4 py-2">{expense.description}</td>
                   <td className="border px-4 py-2">{expense.amount}</td>
                   <td className="border px-4 py-2">{expense.date}</td>
                   <td className="border px-4 py-2">
                     <button
-                      // onClick={() => deleteExpenseItem(expense.id)}
+                      onClick={() => deleteExpenseItem(expense.id)}
                       className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg text-white"
                     >
                       Delete
