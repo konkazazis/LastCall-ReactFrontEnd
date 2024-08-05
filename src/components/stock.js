@@ -15,18 +15,7 @@ function Stock() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddExpenseOpen, setIsAddExpenseOpen] = useState(false);
   const token = localStorage.getItem("token");
-  const expenseTypes = [
-    "Transportation",
-    "Food",
-    "Housing",
-    "Utilities",
-    "Insurance",
-    "Healthcare",
-    "Saving",
-    "Personal Spending",
-    "Entertainment",
-    "Other",
-  ];
+  const stockItems = ["Tomato Jiuce", "Milk", "Pork", "Beef"];
   const [expenseData, setExpenseData] = useState({
     amount: "",
     date: "",
@@ -84,7 +73,7 @@ function Stock() {
         className="bg-white p-2 rounded-md float-right"
         onClick={setIsModalOpen}
       >
-        Set Stock
+        Add Item
       </button>
       <div>
         <h2 className="text-2xl font-bold mb-4">Stock</h2>
@@ -92,6 +81,7 @@ function Stock() {
           <table className="table-auto w-full">
             <thead>
               <tr>
+                <th className="px-4 py-2">Photos</th>
                 <th className="px-4 py-2">Description</th>
                 <th className="px-4 py-2">Amount</th>
                 <th className="px-4 py-2">Date</th>
@@ -101,6 +91,7 @@ function Stock() {
             <tbody>
               {expenses.map((expense) => (
                 <tr key={expense.id}>
+                  <td className="border px-4 py-2">{expense.description}</td>
                   <td className="border px-4 py-2">{expense.description}</td>
                   <td className="border px-4 py-2">{expense.amount}</td>
                   <td className="border px-4 py-2">{expense.date}</td>
@@ -130,9 +121,12 @@ function Stock() {
         overlayClassName="overlay fixed top-0 left-0 right-0 bottom-0 bg-opacity-50 bg-gray-500 z-40"
       >
         <div>
-          <h2 className="text-2xl font-semibold mb-4">Add Expenses</h2>
+          <h2 className="text-2xl font-semibold mb-4">Add Stock Item</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
+              <label htmlFor="description" className="block font-semibold">
+                Photo:
+              </label>
               <label htmlFor="description" className="block font-semibold">
                 Description:
               </label>
@@ -145,7 +139,7 @@ function Stock() {
                 className="w-full p-2 border rounded-lg"
               >
                 <option value="">Select an Expense Type</option>
-                {expenseTypes.map((type) => (
+                {stockItems.map((type) => (
                   <option key={type} value={type}>
                     {type}
                   </option>
@@ -185,7 +179,7 @@ function Stock() {
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
               >
-                Add Expense
+                Add Item
               </button>
               <button
                 type="button"
